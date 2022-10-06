@@ -5,13 +5,15 @@ import {
   Input,
   Label,
   Select,
-} from "../Login/styles";
+  IconEyeOff,
+  IconEye,
+  Span,
+} from "../../styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Api } from "../../services/api";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const schema = yup.object({
@@ -37,17 +39,20 @@ export const RegisterPage = () => {
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const navigate = useNavigate();
 
   const onSubmit = (user) => {
     Api.post("/users", { ...user })
       .then((res) => {
-        console.log(res.data);
-        toast.success("Cadastro Efetuado!");
+        toast.success("Cadastro efetuado com sucesso!");
         reset();
       })
-      .catch((err) => err && toast.error("Verifique os campos digitados"));
+      .catch((err) => {
+        err && toast.error("E-mail já cadastrado!");
+      });
   };
+  const [showPass, setShowPass] = useState(true);
+  const [showConfirmPass, setShowConfirmPass] = useState(true);
+
   return (
     <Container>
       <div className="div-logo-back">
@@ -58,7 +63,7 @@ export const RegisterPage = () => {
       </div>
       <Form onSubmit={handleSubmit(onSubmit)} register>
         <h2>Crie sua conta</h2>
-        <span>Rápido e grátis, vamos nessa!</span>
+        <Span register>Rápido e grátis, vamos nessa!</Span>
 
         <div>
           <Label
@@ -97,7 +102,7 @@ export const RegisterPage = () => {
           </Label>
           <Input
             id="password"
-            type="password"
+            type={showPass ? "password" : "text"}
             placeholder="Digite aqui sua senha"
             borderColor={errors.password ? "var(--color-error)" : "transparent"}
             borderFocus={
@@ -105,6 +110,25 @@ export const RegisterPage = () => {
             }
             {...register("password")}
           />
+          <>
+            {showPass ? (
+              <IconEyeOff
+                bottom={"unset"}
+                marginBotton={"1.2rem"}
+                marginTop={"13.5rem"}
+                top={"0"}
+                onClick={() => setShowPass(!showPass)}
+              />
+            ) : (
+              <IconEye
+                bottom={"unset"}
+                marginBotton={"1.2rem"}
+                marginTop={"13.5rem"}
+                top={"0"}
+                onClick={() => setShowPass(!showPass)}
+              />
+            )}
+          </>
           <Label
             htmlFor="confirmPass"
             colorText={
@@ -117,7 +141,7 @@ export const RegisterPage = () => {
           </Label>
           <Input
             id="confirmPass"
-            type="password"
+            type={showConfirmPass ? "password" : "text"}
             placeholder="Digite novamente sua senha"
             borderColor={
               errors.confirmPass ? "var(--color-error)" : "transparent"
@@ -127,6 +151,23 @@ export const RegisterPage = () => {
             }
             {...register("confirmPass")}
           />
+          <>
+            {showConfirmPass ? (
+              <IconEyeOff
+                bottom={"0"}
+                marginBotton={"17rem"}
+                top={"unset"}
+                onClick={() => setShowConfirmPass(!showConfirmPass)}
+              />
+            ) : (
+              <IconEye
+                bottom={"0"}
+                marginBotton={"17rem"}
+                top={"unset"}
+                onClick={() => setShowConfirmPass(!showConfirmPass)}
+              />
+            )}
+          </>
           <Label
             htmlFor="bio"
             colorText={errors.bio ? "var(--color-error)" : "var(--grey0)"}

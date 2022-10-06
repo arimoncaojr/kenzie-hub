@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
     font-family: 'Inter', sans-serif;
+    background: var(--grey4);
 }
 
 ol, ul {
@@ -82,6 +83,7 @@ button{
 
     --font-weight1: 700;
     --font-weight2: 600;
+    --font-weight3: 400;
 
     --card-login-width: 23.063rem;
     --card-login-height: 31.375rem;

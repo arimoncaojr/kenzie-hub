@@ -8,10 +8,12 @@ export const IconEyeOff = styled(EyeOff)`
   width: 0.875rem;
   height: 1.375;
   position: absolute;
-  bottom: 0;
+  bottom: ${(props) => props.bottom};
+  top: ${(props) => props.top};
   right: 0;
   margin-right: 1rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: ${(props) => props.marginBotton};
+  margin-top: ${(props) => props.marginTop};
   cursor: pointer;
 
   :hover {
@@ -24,10 +26,12 @@ export const IconEye = styled(Eye)`
   width: 0.875rem;
   height: 1.375;
   position: absolute;
-  bottom: 0;
+  bottom: ${(props) => props.bottom};
+  top: ${(props) => props.top};
   right: 0;
   margin-right: 1rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: ${(props) => props.marginBotton};
+  margin-top: ${(props) => props.marginTop};
   cursor: pointer;
 
   :hover {
@@ -44,15 +48,20 @@ export const Container = styled.div`
   max-width: 100%;
   width: 100%;
   height: 100vh;
-  max-height: 100%;
   background: var(--grey4);
+
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 
   .div-logo-back {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: var(--card-register-width);
-    max-height: 100%;
+    @media (max-width: 768px) {
+      margin-top: 2rem;
+    }
   }
   h1 {
     color: var(--color-primary);
@@ -74,7 +83,6 @@ export const Form = styled.form`
   border-radius: var(--border-radius-default);
   gap: 2rem;
   max-width: 100%;
-  max-height: 100%;
   h2 {
     color: var(--grey0);
     font-size: var(--font-title2);
@@ -87,7 +95,6 @@ export const Form = styled.form`
     gap: 10px;
     position: relative;
     max-width: 100%;
-    max-height: 100%;
   }
 
   button {
@@ -98,16 +105,10 @@ export const Form = styled.form`
     border-radius: var(--border-radius-default);
     background-color: var(--color-primary);
     max-width: 100%;
-    max-height: 100%;
 
     :hover {
       background-color: var(--color-primary-focus);
     }
-  }
-  span {
-    color: var(--grey1);
-    font-size: var(--font-text1);
-    font-weight: var(--font-weight2);
   }
 `;
 export const Label = styled.label`
@@ -124,7 +125,6 @@ export const Input = styled.input`
   color: var(--grey0);
   outline: none;
   max-width: 100%;
-  max-height: 100%;
 
   :focus {
     border: 1px solid ${(props) => props.borderFocus};
@@ -146,7 +146,6 @@ export const LinkeStyle = styled(Link)`
   background-color: ${(props) =>
     props.register ? "var(--grey3)" : "var(--grey1)"};
   max-width: 100%;
-  max-height: 100%;
   font-size: ${(props) => (props.register ? "var(--font-text3)" : "1rem")};
   :hover {
     background-color: var(--grey2);
@@ -162,13 +161,14 @@ export const Select = styled.select`
   color: var(--grey0);
   outline: none;
   max-width: 100%;
-  max-height: 100%;
 
   :focus {
     border: 1px solid ${(props) => props.borderFocus};
   }
 `;
-
-export const DivSelect = `
-
+export const Span = styled.span`
+  color: var(--grey1);
+  font-size: var(--font-text1);
+  font-weight: ${(props) =>
+    props.register ? "var(--font-weight3)" : "var(--font-weight2)"};
 `;

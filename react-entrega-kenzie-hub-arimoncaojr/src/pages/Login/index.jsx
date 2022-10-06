@@ -6,7 +6,8 @@ import {
   Input,
   Label,
   IconEye,
-} from "./styles";
+  Span,
+} from "../../styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -32,7 +33,6 @@ export const LoginPage = () => {
   const onSubmit = (user) => {
     Api.post("/sessions", { ...user })
       .then((res) => {
-        console.log(res.data);
         window.localStorage.clear();
         window.localStorage.setItem("authID", res.data.user.id);
         window.localStorage.setItem("authToken", res.data.token);
@@ -82,14 +82,26 @@ export const LoginPage = () => {
           />
           <>
             {showPass ? (
-              <IconEyeOff onClick={() => setShowPass(!showPass)} />
+              <IconEyeOff
+                bottom={"0"}
+                marginBotton={"1.2rem"}
+                marginTop={"unset"}
+                top={"unset"}
+                onClick={() => setShowPass(!showPass)}
+              />
             ) : (
-              <IconEye onClick={() => setShowPass(!showPass)} />
+              <IconEye
+                bottom={"0"}
+                marginBotton={"1.2rem"}
+                marginTop={"unset"}
+                top={"unset"}
+                onClick={() => setShowPass(!showPass)}
+              />
             )}
           </>
         </div>
         <button type="submit">Entrar</button>
-        <span>Ainda não possui uma conta?</span>
+        <Span>Ainda não possui uma conta?</Span>
         <Link to="/register">Cadastre-se</Link>
       </Form>
     </Container>
