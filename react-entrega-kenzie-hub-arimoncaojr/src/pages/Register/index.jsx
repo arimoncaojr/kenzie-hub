@@ -15,6 +15,7 @@ import * as yup from "yup";
 import { Api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required("Nome não preenchido"),
@@ -36,7 +37,6 @@ export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -44,7 +44,9 @@ export const RegisterPage = () => {
     Api.post("/users", { ...user })
       .then((res) => {
         toast.success("Cadastro efetuado com sucesso!");
-        reset();
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       })
       .catch((err) => {
         err && toast.error("E-mail já cadastrado!");
@@ -52,6 +54,7 @@ export const RegisterPage = () => {
   };
   const [showPass, setShowPass] = useState(true);
   const [showConfirmPass, setShowConfirmPass] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <Container>
