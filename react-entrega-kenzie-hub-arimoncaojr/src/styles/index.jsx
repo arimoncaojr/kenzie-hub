@@ -20,10 +20,6 @@ export const IconEyeOff = styled(EyeOff)`
   @media (max-width: 1366px) {
     display: ${(props) => (props.mobile ? "block" : "none")};
   }
-
-  :hover {
-    color: var(--grey1);
-  }
 `;
 
 export const IconEye = styled(Eye)`
@@ -43,10 +39,6 @@ export const IconEye = styled(Eye)`
 
   @media (max-width: 1366px) {
     display: ${(props) => (props.mobile ? "block" : "none")};
-  }
-
-  :hover {
-    color: var(--grey1);
   }
 `;
 
