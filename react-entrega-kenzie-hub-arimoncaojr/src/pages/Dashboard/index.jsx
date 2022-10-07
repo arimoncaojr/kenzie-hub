@@ -36,7 +36,7 @@ export const Dashboard = () => {
             </DivUser>
           </div>
           <DivInfos>
-            <h2>Quen pena! Estamos em desenvolvimento :(</h2>
+            <h2>Que pena! Estamos em desenvolvimento :(</h2>
             <p>
               Nossa aplicação está em desenvolvimento, em breve teremos
               novidades!
