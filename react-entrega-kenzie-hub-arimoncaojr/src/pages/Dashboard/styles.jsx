@@ -68,6 +68,12 @@ export const DivUser = styled.div`
   justify-content: space-between;
   width: 80%;
   height: 7.375rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+  }
   span {
     font-size: var(--font-text3);
     color: var(--grey1);
