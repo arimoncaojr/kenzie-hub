@@ -133,7 +133,11 @@ export const RegisterPage = () => {
                     <IconEyeOff
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
-                      marginTop={"13.5rem"}
+                      marginTop={
+                        errors.password && errors.password.message.length > 20
+                          ? "14.2rem"
+                          : "13.4rem"
+                      }
                       top={"0"}
                       onMouseEnter={() => setShowPass(!showPass)}
                     />
@@ -141,7 +145,11 @@ export const RegisterPage = () => {
                       mobile
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
-                      marginTop={"13.5rem"}
+                      marginTop={
+                        errors.password && errors.password.message.length > 20
+                          ? "14.2rem"
+                          : "13.4rem"
+                      }
                       top={"0"}
                       onClick={() => setShowPass(!showPass)}
                     />
@@ -151,7 +159,11 @@ export const RegisterPage = () => {
                     <IconEye
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
-                      marginTop={"13.5rem"}
+                      marginTop={
+                        errors.password && errors.password.message.length > 20
+                          ? "14.2rem"
+                          : "13.4rem"
+                      }
                       top={"0"}
                       onMouseLeave={() => setShowPass(!showPass)}
                     />
@@ -159,7 +171,11 @@ export const RegisterPage = () => {
                       mobile
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
-                      marginTop={"13.5rem"}
+                      marginTop={
+                        errors.password && errors.password.message.length > 20
+                          ? "14.2rem"
+                          : "13.4rem"
+                      }
                       top={"0"}
                       onClick={() => setShowPass(!showPass)}
                     />
