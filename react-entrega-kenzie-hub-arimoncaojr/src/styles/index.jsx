@@ -15,6 +15,11 @@ export const IconEyeOff = styled(EyeOff)`
   margin-bottom: ${(props) => props.marginBotton};
   margin-top: ${(props) => props.marginTop};
   cursor: pointer;
+  display: ${(props) => (props.mobile ? "none" : "block")};
+
+  @media (max-width: 1366px) {
+    display: ${(props) => (props.mobile ? "block" : "none")};
+  }
 
   :hover {
     color: var(--grey1);
@@ -33,6 +38,12 @@ export const IconEye = styled(Eye)`
   margin-bottom: ${(props) => props.marginBotton};
   margin-top: ${(props) => props.marginTop};
   cursor: pointer;
+
+  display: ${(props) => (props.mobile ? "none" : "block")};
+
+  @media (max-width: 1366px) {
+    display: ${(props) => (props.mobile ? "block" : "none")};
+  }
 
   :hover {
     color: var(--grey1);
