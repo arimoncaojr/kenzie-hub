@@ -15,6 +15,10 @@ export const IconEyeOff = styled(EyeOff)`
   margin-bottom: ${(props) => props.marginBotton};
   margin-top: ${(props) => props.marginTop};
   cursor: pointer;
+
+  :hover {
+    color: var(--grey1);
+  }
 `;
 
 export const IconEye = styled(Eye)`
@@ -29,6 +33,10 @@ export const IconEye = styled(Eye)`
   margin-bottom: ${(props) => props.marginBotton};
   margin-top: ${(props) => props.marginTop};
   cursor: pointer;
+
+  :hover {
+    color: var(--grey1);
+  }
 `;
 
 export const Container = styled.div`

@@ -88,7 +88,8 @@ export const LoginPage = () => {
                 marginBotton={"1.2rem"}
                 marginTop={"unset"}
                 top={"unset"}
-                onMouseEnter={() => setShowPass(!showPass)}
+                onClick={() => setShowPass(!showPass)}
+                // onMouseEnter={() => setShowPass(!showPass)}
               />
             ) : (
               <IconEye
@@ -96,7 +97,8 @@ export const LoginPage = () => {
                 marginBotton={"1.2rem"}
                 marginTop={"unset"}
                 top={"unset"}
-                onMouseLeave={() => setShowPass(!showPass)}
+                onClick={() => setShowPass(!showPass)}
+                // onMouseLeave={() => setShowPass(!showPass)}
               />
             )}
           </>
