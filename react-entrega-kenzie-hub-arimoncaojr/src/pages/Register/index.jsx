@@ -135,7 +135,7 @@ export const RegisterPage = () => {
                       marginBotton={"1.2rem"}
                       marginTop={
                         errors.password && errors.password.message.length > 20
-                          ? "14.2rem"
+                          ? "14.3rem"
                           : "13.4rem"
                       }
                       top={"0"}
@@ -147,7 +147,7 @@ export const RegisterPage = () => {
                       marginBotton={"1.2rem"}
                       marginTop={
                         errors.password && errors.password.message.length > 20
-                          ? "14.2rem"
+                          ? "14.3rem"
                           : "13.4rem"
                       }
                       top={"0"}
@@ -161,7 +161,7 @@ export const RegisterPage = () => {
                       marginBotton={"1.2rem"}
                       marginTop={
                         errors.password && errors.password.message.length > 20
-                          ? "14.2rem"
+                          ? "14.3rem"
                           : "13.4rem"
                       }
                       top={"0"}
@@ -173,7 +173,7 @@ export const RegisterPage = () => {
                       marginBotton={"1.2rem"}
                       marginTop={
                         errors.password && errors.password.message.length > 20
-                          ? "14.2rem"
+                          ? "14.3rem"
                           : "13.4rem"
                       }
                       top={"0"}
