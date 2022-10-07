@@ -8,6 +8,7 @@ import {
   IconEyeOff,
   IconEye,
   Span,
+  H1Register,
 } from "../../styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -59,7 +60,7 @@ export const RegisterPage = () => {
   return (
     <Container>
       <div className="div-logo-back">
-        <h1>Kenzie Hub</h1>
+        <H1Register>Kenzie Hub</H1Register>
         <Link register to="/login">
           Voltar
         </Link>
@@ -120,7 +121,7 @@ export const RegisterPage = () => {
                 marginBotton={"1.2rem"}
                 marginTop={"13.5rem"}
                 top={"0"}
-                onClick={() => setShowPass(!showPass)}
+                onMouseEnter={() => setShowPass(!showPass)}
               />
             ) : (
               <IconEye
@@ -128,7 +129,7 @@ export const RegisterPage = () => {
                 marginBotton={"1.2rem"}
                 marginTop={"13.5rem"}
                 top={"0"}
-                onClick={() => setShowPass(!showPass)}
+                onMouseLeave={() => setShowPass(!showPass)}
               />
             )}
           </>
@@ -158,16 +159,16 @@ export const RegisterPage = () => {
             {showConfirmPass ? (
               <IconEyeOff
                 bottom={"0"}
-                marginBotton={"17rem"}
+                marginBotton={"17.1rem"}
                 top={"unset"}
-                onClick={() => setShowConfirmPass(!showConfirmPass)}
+                onMouseEnter={() => setShowConfirmPass(!showConfirmPass)}
               />
             ) : (
               <IconEye
                 bottom={"0"}
-                marginBotton={"17rem"}
+                marginBotton={"17.1rem"}
                 top={"unset"}
-                onClick={() => setShowConfirmPass(!showConfirmPass)}
+                onMouseLeave={() => setShowConfirmPass(!showConfirmPass)}
               />
             )}
           </>

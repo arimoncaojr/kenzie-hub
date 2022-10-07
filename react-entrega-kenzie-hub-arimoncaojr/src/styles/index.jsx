@@ -15,10 +15,6 @@ export const IconEyeOff = styled(EyeOff)`
   margin-bottom: ${(props) => props.marginBotton};
   margin-top: ${(props) => props.marginTop};
   cursor: pointer;
-
-  :hover {
-    color: var(--grey1);
-  }
 `;
 
 export const IconEye = styled(Eye)`
@@ -33,10 +29,6 @@ export const IconEye = styled(Eye)`
   margin-bottom: ${(props) => props.marginBotton};
   margin-top: ${(props) => props.marginTop};
   cursor: pointer;
-
-  :hover {
-    color: var(--grey1);
-  }
 `;
 
 export const Container = styled.div`
@@ -47,7 +39,7 @@ export const Container = styled.div`
   gap: 1rem;
   max-width: 100%;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: var(--grey4);
 
   @media (max-width: 768px) {
@@ -59,16 +51,24 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     width: var(--card-register-width);
-    @media (max-width: 768px) {
-      margin-top: 2rem;
-      max-width: 100%;
-    }
+    max-width: 100%;
+    margin-top: 10px;
   }
-  h1 {
-    color: var(--color-primary);
-    font-size: var(--font-title1);
-    font-weight: var(--font-weight1);
+`;
+export const H1Login = styled.h1`
+  color: var(--color-primary);
+  font-size: var(--font-title1);
+  font-weight: var(--font-weight1);
+  margin-top: 10rem;
+  @media (max-width: 768px) {
+    margin-top: 5rem;
   }
+`;
+
+export const H1Register = styled.h1`
+  color: var(--color-primary);
+  font-size: var(--font-title1);
+  font-weight: var(--font-weight1);
 `;
 export const Form = styled.form`
   display: flex;

@@ -7,6 +7,7 @@ import {
   Label,
   IconEye,
   Span,
+  H1Login,
 } from "../../styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -46,7 +47,7 @@ export const LoginPage = () => {
 
   return (
     <Container>
-      <h1>Kenzie Hub</h1>
+      <H1Login>Kenzie Hub</H1Login>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <h2>Login</h2>
         <div>
@@ -87,7 +88,7 @@ export const LoginPage = () => {
                 marginBotton={"1.2rem"}
                 marginTop={"unset"}
                 top={"unset"}
-                onClick={() => setShowPass(!showPass)}
+                onMouseEnter={() => setShowPass(!showPass)}
               />
             ) : (
               <IconEye
@@ -95,7 +96,7 @@ export const LoginPage = () => {
                 marginBotton={"1.2rem"}
                 marginTop={"unset"}
                 top={"unset"}
-                onClick={() => setShowPass(!showPass)}
+                onMouseLeave={() => setShowPass(!showPass)}
               />
             )}
           </>
