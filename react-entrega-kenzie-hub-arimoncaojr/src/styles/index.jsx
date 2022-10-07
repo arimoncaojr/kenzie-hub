@@ -61,6 +61,7 @@ export const Container = styled.div`
     width: var(--card-register-width);
     @media (max-width: 768px) {
       margin-top: 2rem;
+      max-width: 100%;
     }
   }
   h1 {
