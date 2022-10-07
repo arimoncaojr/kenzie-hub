@@ -13,7 +13,7 @@ export const Dashboard = () => {
       .catch((err) => {
         console.log(err);
         window.localStorage.clear();
-        navigate(-1);
+        navigate("/login");
       });
   }, [token, navigate]);
 
