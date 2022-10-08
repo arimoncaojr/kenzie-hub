@@ -209,14 +209,14 @@ export const RegisterPage = () => {
                   <>
                     <IconEyeOff
                       bottom={"0"}
-                      marginBotton={"17.1rem"}
+                      marginBotton={"17.2rem"}
                       top={"unset"}
                       onMouseEnter={() => setShowConfirmPass(!showConfirmPass)}
                     />
                     <IconEyeOff
                       mobile
                       bottom={"0"}
-                      marginBotton={"17.1rem"}
+                      marginBotton={"17.2rem"}
                       top={"unset"}
                       onClick={() => setShowConfirmPass(!showConfirmPass)}
                     />
@@ -225,14 +225,14 @@ export const RegisterPage = () => {
                   <>
                     <IconEye
                       bottom={"0"}
-                      marginBotton={"17.1rem"}
+                      marginBotton={"17.2rem"}
                       top={"unset"}
                       onMouseLeave={() => setShowConfirmPass(!showConfirmPass)}
                     />
                     <IconEye
                       mobile
                       bottom={"0"}
-                      marginBotton={"17.1rem"}
+                      marginBotton={"17.2rem"}
                       top={"unset"}
                       onClick={() => setShowConfirmPass(!showConfirmPass)}
                     />
