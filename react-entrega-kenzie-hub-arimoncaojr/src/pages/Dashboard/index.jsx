@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Api } from "../../services/api";
-import { Container, LinkStyle as Link, DivUser, DivInfos } from "./styles";
+import {
+  Container,
+  LinkStyle as Link,
+  DivUser,
+  DivInfos,
+  H2,
+  H3,
+  IconTrash,
+  ContainerModal,
+  Label,
+  Input,
+  Select,
+} from "./styles";
+import { DashboardContext } from "../../Contexts/DashboardContext";
+import { useContext } from "react";
 export const Dashboard = () => {
-  const [userInfo, setUserInfo] = useState([]);
-  const token = localStorage.getItem("@kenzieHub:Token");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    Api.get("/profile", { headers: { Authorization: `token ${token}` } })
-      .then((res) => setUserInfo(res.data))
-      .catch((err) => {
-        console.log(err);
-        window.localStorage.clear();
-        navigate("/login");
-      });
-  }, [token, navigate]);
+  const {
+    userInfo,
+    token,
+    deleteTech,
+    modal,
+    showModal,
+    submitTechInfo,
+    register,
+    handleSubmit,
+    errors,
+    reset,
+  } = useContext(DashboardContext);
 
   return (
     <>
@@ -31,17 +41,95 @@ export const Dashboard = () => {
           </header>
           <div className="div-user">
             <DivUser>
-              <h2>Olá, {userInfo.name}</h2>
+              <H2>Olá, {userInfo.name}</H2>
               <span>{userInfo.course_module}</span>
             </DivUser>
           </div>
           <DivInfos>
-            <h2>Que pena! Estamos em desenvolvimento :(</h2>
-            <p>
-              Nossa aplicação está em desenvolvimento, em breve teremos
-              novidades!
-            </p>
+            <div className="div-btn-tech">
+              <H3>Tecnologias</H3>
+              <button onClick={() => showModal(true)}>+</button>
+            </div>
+            {userInfo.techs && (
+              <ul>
+                {userInfo.techs.map((element) => (
+                  <li key={element.id}>
+                    <h3>{element.title}</h3>
+                    <div>
+                      <p>{element.status}</p>
+                      <IconTrash onClick={() => deleteTech(element.id)} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </DivInfos>
+          {modal && (
+            <ContainerModal>
+              <div className="modal">
+                <div className="closeDiv">
+                  <h4>Cadastrar Tecnologia</h4>
+                  <button
+                    onClick={() => {
+                      showModal(false);
+                      reset();
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+                <form onSubmit={handleSubmit(submitTechInfo)} action="">
+                  <Label
+                    htmlFor="title"
+                    colorText={
+                      errors.title ? "var(--color-error)" : "var(--grey0)"
+                    }
+                  >
+                    {errors.title ? errors.title.message : "Nome"}
+                  </Label>
+                  <Input
+                    type="text"
+                    id="title"
+                    placeholder="Digite aqui sua Tecnologia"
+                    borderColor={
+                      errors.title ? "var(--color-error)" : "transparent"
+                    }
+                    borderFocus={
+                      errors.title ? "var(--color-error)" : "var(--grey0)"
+                    }
+                    {...register("title")}
+                  />
+                  <Label
+                    htmlFor="status"
+                    colorText={
+                      errors.status ? "var(--color-error)" : "var(--grey0)"
+                    }
+                  >
+                    {errors.status
+                      ? errors.status.message
+                      : "Selecionar status"}
+                  </Label>
+                  <Select
+                    name=""
+                    id="status"
+                    borderColor={
+                      errors.status ? "var(--color-error)" : "transparent"
+                    }
+                    borderFocus={
+                      errors.status ? "var(--color-error)" : "var(--grey0)"
+                    }
+                    {...register("status")}
+                  >
+                    <option value="">Selecione</option>
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                  </Select>
+                  <button type="submit">Cadastrar Tecnologia</button>
+                </form>
+              </div>
+            </ContainerModal>
+          )}
         </Container>
       )}
     </>
