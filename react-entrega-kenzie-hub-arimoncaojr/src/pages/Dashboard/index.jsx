@@ -50,7 +50,7 @@ export const Dashboard = () => {
               <H3>Tecnologias</H3>
               <button onClick={() => showModal(true)}>+</button>
             </div>
-            {userInfo.techs.length > 0 && (
+            {userInfo.techs && (
               <ul>
                 {userInfo.techs.map((element) => (
                   <li key={element.id}>
