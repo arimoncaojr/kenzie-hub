@@ -11,8 +11,9 @@ import {
   Input,
   Select,
 } from "./styles";
-import { DashboardContext } from "../../Contexts/DashboardContext";
+import { DashboardContext } from "../../contexts/DashboardContext";
 import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 export const Dashboard = () => {
   const {
     userInfo,
@@ -29,7 +30,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      {token && (
+      {token ? (
         <Container>
           <header>
             <div className="div-header">
@@ -131,6 +132,8 @@ export const Dashboard = () => {
             </ContainerModal>
           )}
         </Container>
+      ) : (
+        <Navigate to="/" replace />
       )}
     </>
   );

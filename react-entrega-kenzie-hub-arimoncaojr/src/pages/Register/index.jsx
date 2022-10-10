@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RegisterContext } from "../../Contexts/RegisterContext";
+import { RegisterContext } from "../../contexts/RegisterContext";
 import {
   Container,
   Form,

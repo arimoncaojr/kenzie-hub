@@ -26,13 +26,14 @@ export const DashboardProvider = ({ children }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   useEffect(() => {
-    Api.get("/profile", { headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => setUserInfo(res.data))
-      .catch((err) => {
-        console.log(err);
-        window.localStorage.clear();
-        navigate("/login");
-      });
+    token &&
+      Api.get("/profile", { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => {
+          console.log(err);
+          window.localStorage.clear();
+          navigate("/login");
+        });
   }, [token, navigate, userInfo.techs]);
 
   function deleteTech(id) {
@@ -72,6 +73,7 @@ export const DashboardProvider = ({ children }) => {
         handleSubmit,
         errors,
         reset,
+        navigate,
       }}
     >
       {children}
