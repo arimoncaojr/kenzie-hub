@@ -31,6 +31,11 @@ export const RegisterProvider = ({ children }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const [showPass, setShowPass] = useState(true);
+  const [showConfirmPass, setShowConfirmPass] = useState(true);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("@kenzieHub:Token");
+
   const onSubmit = (user) => {
     Api.post("/users", { ...user })
       .then((res) => {
@@ -43,10 +48,6 @@ export const RegisterProvider = ({ children }) => {
         err && toast.error("E-mail já cadastrado!");
       });
   };
-  const [showPass, setShowPass] = useState(true);
-  const [showConfirmPass, setShowConfirmPass] = useState(true);
-  const navigate = useNavigate();
-  const token = localStorage.getItem("@kenzieHub:Token");
 
   return (
     <RegisterContext.Provider
