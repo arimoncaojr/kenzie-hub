@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LoginContext } from "../../Contexts/LoginContext";
+import { LoginContext } from "../../contexts/LoginContext";
 import {
   Container,
   Form,
