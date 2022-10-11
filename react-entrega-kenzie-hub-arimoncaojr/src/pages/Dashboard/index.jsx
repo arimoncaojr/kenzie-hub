@@ -5,16 +5,26 @@ import {
   DivInfos,
   H2,
   H3,
-  IconTrash,
-} from "./styles";
+} from "../../styles/dashboard";
 import { DashboardContext } from "../../contexts/DashboardContext";
 import { ModalContext } from "../../contexts/ModalCreateContext";
+import { ModalEditContext } from "../../contexts/ModalEditContext";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { ModalCreate } from "../../components/ModalCreate";
+import { ModalEdit } from "../../components/ModalEdit";
+import { toast } from "react-toastify";
 export const Dashboard = () => {
-  const { userInfo, token, deleteTech } = useContext(DashboardContext);
+  const { userInfo, token } = useContext(DashboardContext);
   const { modal, showModal } = useContext(ModalContext);
+  const { setNameTech, modalEdit, showModalEdit, setIdTech } =
+    useContext(ModalEditContext);
+
+  function btnModalEdit(name) {
+    setNameTech(name);
+    showModalEdit(true);
+  }
+
   return (
     <>
       {token ? (
@@ -22,7 +32,13 @@ export const Dashboard = () => {
           <header>
             <div className="div-header">
               <h1>Kenzie Hub</h1>
-              <Link to={"/login"} onClick={() => window.localStorage.clear()}>
+              <Link
+                to={"/login"}
+                onClick={() => {
+                  window.localStorage.clear();
+                  toast.success("Logout feito com sucesso!");
+                }}
+              >
                 Sair
               </Link>
             </div>
@@ -41,11 +57,16 @@ export const Dashboard = () => {
             {userInfo.techs && (
               <ul>
                 {userInfo.techs.map((element) => (
-                  <li key={element.id}>
+                  <li
+                    key={element.id}
+                    onClick={() => {
+                      btnModalEdit(element.title);
+                      setIdTech(element.id);
+                    }}
+                  >
                     <h3>{element.title}</h3>
                     <div>
                       <p>{element.status}</p>
-                      <IconTrash onClick={() => deleteTech(element.id)} />
                     </div>
                   </li>
                 ))}
@@ -53,6 +74,7 @@ export const Dashboard = () => {
             )}
           </DivInfos>
           {modal && <ModalCreate />}
+          {modalEdit && <ModalEdit />}
         </Container>
       ) : (
         <Navigate to="/" replace />
