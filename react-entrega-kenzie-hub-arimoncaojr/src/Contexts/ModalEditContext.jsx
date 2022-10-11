@@ -9,7 +9,6 @@ const schema = yup.object({
   status: yup.string().required("Status não selecionado"),
 });
 
-console.log();
 export const ModalEditContext = createContext();
 
 export const ModalEditProvider = ({ children }) => {
@@ -25,6 +24,7 @@ export const ModalEditProvider = ({ children }) => {
     getValues,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
   const editTech = (newInfo) => {
     Api.put(
       `/users/techs/${idTech}`,
