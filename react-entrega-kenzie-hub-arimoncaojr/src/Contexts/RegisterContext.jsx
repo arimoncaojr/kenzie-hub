@@ -40,9 +40,7 @@ export const RegisterProvider = ({ children }) => {
     Api.post("/users", { ...user })
       .then((res) => {
         toast.success("Cadastro efetuado com sucesso!");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+        navigate("/login");
       })
       .catch((err) => {
         err && toast.error("E-mail já cadastrado!");
