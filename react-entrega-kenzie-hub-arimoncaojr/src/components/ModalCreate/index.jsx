@@ -1,9 +1,4 @@
-import {
-  ContainerModal,
-  Label,
-  Input,
-  Select,
-} from "../../pages/Dashboard/styles";
+import { ContainerModal, Label, Input, Select } from "../../styles/modal";
 import { ModalContext } from "../../contexts/ModalCreateContext";
 import { useContext } from "react";
 export const ModalCreate = () => {
@@ -15,6 +10,7 @@ export const ModalCreate = () => {
         <div className="closeDiv">
           <h4>Cadastrar Tecnologia</h4>
           <button
+            className="closeModalCreate"
             onClick={() => {
               showModal(false);
               reset();
@@ -56,7 +52,9 @@ export const ModalCreate = () => {
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>
           </Select>
-          <button type="submit">Cadastrar Tecnologia</button>
+          <button className="btnRegisterTech" type="submit">
+            Cadastrar Tecnologia
+          </button>
         </form>
       </div>
     </ContainerModal>

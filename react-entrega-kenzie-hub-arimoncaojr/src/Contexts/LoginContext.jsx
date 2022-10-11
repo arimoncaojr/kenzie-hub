@@ -31,9 +31,7 @@ export const LoginProvider = ({ children }) => {
         window.localStorage.setItem("@kenzieHub:Token", res.data.token);
         window.localStorage.setItem("@kenzieHub:User", res.data.user.name);
         toast.success("Login bem sucedido!");
-        setTimeout(() => {
-          navigate(`/dashboard/${res.data.user.name}/${res.data.user.id}`);
-        }, 2000);
+        navigate(`/dashboard/${res.data.user.name}/${res.data.user.id}`);
       })
       .catch((err) => err && toast.error("Login ou Senha inválidos!"));
   };

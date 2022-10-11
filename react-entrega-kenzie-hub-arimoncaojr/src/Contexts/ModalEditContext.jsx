@@ -9,22 +9,26 @@ const schema = yup.object({
   status: yup.string().required("Status não selecionado"),
 });
 
+console.log();
 export const ModalEditContext = createContext();
 
 export const ModalEditProvider = ({ children }) => {
   const token = localStorage.getItem("@kenzieHub:Token");
   const [modalEdit, showModalEdit] = useState(false);
+  const [nameTech, setNameTech] = useState("");
+  const [idTech, setIdTech] = useState("");
 
   const {
     register,
     handleSubmit,
+    reset,
+    getValues,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-
-  const editTech = (id, newInfo) => {
+  const editTech = (newInfo) => {
     Api.put(
-      `/users/tech/${id}`,
-      { newInfo },
+      `/users/techs/${idTech}`,
+      { ...newInfo },
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -32,12 +36,38 @@ export const ModalEditProvider = ({ children }) => {
       .then((res) => {
         toast.success("Status editado com sucesso!");
         showModalEdit(false);
+        reset();
       })
       .catch((err) => err && toast.error("Ops, algo deu errado!"));
   };
 
+  function deleteTech() {
+    Api.delete(`/users/techs/${idTech}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(() => {
+      toast.success("Tecnologia deletada com sucesso!");
+      showModalEdit(false);
+      reset();
+    });
+  }
+
   return (
-    <ModalEditContext.Provider value={{ register, handleSubmit, errors }}>
+    <ModalEditContext.Provider
+      value={{
+        register,
+        handleSubmit,
+        errors,
+        nameTech,
+        setNameTech,
+        modalEdit,
+        showModalEdit,
+        deleteTech,
+        editTech,
+        setIdTech,
+        getValues,
+        reset,
+      }}
+    >
       {children}
     </ModalEditContext.Provider>
   );
