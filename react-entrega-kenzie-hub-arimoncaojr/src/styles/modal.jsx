@@ -81,6 +81,10 @@ export const ContainerModal = styled.div`
         background-color: var(--grey1);
         color: var(--grey0);
         max-width: 100%;
+
+        :hover {
+          background-color: var(--grey2);
+        }
       }
     }
   }
@@ -131,4 +135,8 @@ export const ButtonEditInfo = styled.button`
   max-width: 100%;
 
   cursor: ${(props) => props.cursorPointer};
+
+  :hover {
+    background-color: ${(props) => props.hoverBtn};
+  }
 `;
