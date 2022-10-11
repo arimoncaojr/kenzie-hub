@@ -6,28 +6,15 @@ import {
   H2,
   H3,
   IconTrash,
-  ContainerModal,
-  Label,
-  Input,
-  Select,
 } from "./styles";
 import { DashboardContext } from "../../contexts/DashboardContext";
+import { ModalContext } from "../../contexts/ModalCreateContext";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { ModalCreate } from "../../components/ModalCreate";
 export const Dashboard = () => {
-  const {
-    userInfo,
-    token,
-    deleteTech,
-    modal,
-    showModal,
-    submitTechInfo,
-    register,
-    handleSubmit,
-    errors,
-    reset,
-  } = useContext(DashboardContext);
-
+  const { userInfo, token, deleteTech } = useContext(DashboardContext);
+  const { modal, showModal } = useContext(ModalContext);
   return (
     <>
       {token ? (
@@ -65,72 +52,7 @@ export const Dashboard = () => {
               </ul>
             )}
           </DivInfos>
-          {modal && (
-            <ContainerModal>
-              <div className="modal">
-                <div className="closeDiv">
-                  <h4>Cadastrar Tecnologia</h4>
-                  <button
-                    onClick={() => {
-                      showModal(false);
-                      reset();
-                    }}
-                  >
-                    X
-                  </button>
-                </div>
-                <form onSubmit={handleSubmit(submitTechInfo)} action="">
-                  <Label
-                    htmlFor="title"
-                    colorText={
-                      errors.title ? "var(--color-error)" : "var(--grey0)"
-                    }
-                  >
-                    {errors.title ? errors.title.message : "Nome"}
-                  </Label>
-                  <Input
-                    type="text"
-                    id="title"
-                    placeholder="Digite aqui sua Tecnologia"
-                    borderColor={
-                      errors.title ? "var(--color-error)" : "transparent"
-                    }
-                    borderFocus={
-                      errors.title ? "var(--color-error)" : "var(--grey0)"
-                    }
-                    {...register("title")}
-                  />
-                  <Label
-                    htmlFor="status"
-                    colorText={
-                      errors.status ? "var(--color-error)" : "var(--grey0)"
-                    }
-                  >
-                    {errors.status
-                      ? errors.status.message
-                      : "Selecionar status"}
-                  </Label>
-                  <Select
-                    name=""
-                    id="status"
-                    borderColor={
-                      errors.status ? "var(--color-error)" : "transparent"
-                    }
-                    borderFocus={
-                      errors.status ? "var(--color-error)" : "var(--grey0)"
-                    }
-                    {...register("status")}
-                  >
-                    <option value="">Selecione</option>
-                    <option value="Iniciante">Iniciante</option>
-                    <option value="Intermediário">Intermediário</option>
-                    <option value="Avançado">Avançado</option>
-                  </Select>
-                  <button type="submit">Cadastrar Tecnologia</button>
-                </form>
-              </div>
-            </ContainerModal>
-          )}
+          {modal && <ModalCreate />}
         </Container>
       ) : (
         <Navigate to="/" replace />
