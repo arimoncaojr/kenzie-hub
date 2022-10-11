@@ -67,6 +67,11 @@ export const ModalEdit = () => {
           </Select>
           <div className="divBtns">
             <ButtonEditInfo
+              hoverBtn={
+                !value
+                  ? "var(--color-primary-negative)"
+                  : "var(--color-primary-focus)"
+              }
               cursorPointer={!value ? "unset" : "pointer"}
               backgroundColor={
                 !value
