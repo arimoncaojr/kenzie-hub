@@ -11,6 +11,7 @@ import {
   Span,
   H1Login,
 } from "../../styles";
+import { Navigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const {
@@ -21,7 +22,6 @@ export const LoginPage = () => {
     token,
     errors,
     onSubmit,
-    navigate,
   } = useContext(LoginContext);
   return (
     <>
@@ -115,9 +115,7 @@ export const LoginPage = () => {
           </Form>
         </Container>
       ) : (
-        setTimeout(() => {
-          navigate(`/dashboard`);
-        }, 100)
+        <Navigate to="/dashboard" />
       )}
     </>
   );
