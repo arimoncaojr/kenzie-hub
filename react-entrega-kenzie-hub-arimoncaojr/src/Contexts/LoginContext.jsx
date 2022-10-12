@@ -27,11 +27,9 @@ export const LoginProvider = ({ children }) => {
     Api.post("/sessions", { ...user })
       .then((res) => {
         window.localStorage.clear();
-        window.localStorage.setItem("@kenzieHub:ID", res.data.user.id);
         window.localStorage.setItem("@kenzieHub:Token", res.data.token);
-        window.localStorage.setItem("@kenzieHub:User", res.data.user.name);
         toast.success("Login bem sucedido!");
-        navigate(`/dashboard/${res.data.user.name}/${res.data.user.id}`);
+        navigate(`/dashboard`, { replace: true });
       })
       .catch((err) => err && toast.error("Login ou Senha inválidos!"));
   };

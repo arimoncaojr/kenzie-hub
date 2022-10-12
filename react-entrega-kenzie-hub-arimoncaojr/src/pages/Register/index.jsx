@@ -12,6 +12,7 @@ import {
   Span,
   H1Register,
 } from "../../styles";
+import { Navigate } from "react-router-dom";
 
 export const RegisterPage = () => {
   const {
@@ -19,7 +20,6 @@ export const RegisterPage = () => {
     handleSubmit,
     errors,
     onSubmit,
-    navigate,
     showPass,
     setShowPass,
     showConfirmPass,
@@ -275,9 +275,7 @@ export const RegisterPage = () => {
           </Form>
         </Container>
       ) : (
-        setTimeout(() => {
-          navigate(`/dashboard`);
-        }, 100)
+        <Navigate to="/dashboard" />
       )}
     </>
   );

@@ -1,7 +1,6 @@
 import { useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../services/api";
-import { toast } from "react-toastify";
 export const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
@@ -14,17 +13,10 @@ export const DashboardProvider = ({ children }) => {
       Api.get("/profile", { headers: { Authorization: `Bearer ${token}` } })
         .then((res) => setUserInfo(res.data))
         .catch((err) => {
-          console.log(err);
           window.localStorage.clear();
           navigate("/login");
         });
   }, [token, navigate, userInfo.techs]);
-
-  function deleteTech(id) {
-    Api.delete(`/users/techs/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    }).then(() => toast.success("Tecnologia deletada com sucesso!"));
-  }
 
   return (
     <DashboardContext.Provider
@@ -32,7 +24,6 @@ export const DashboardProvider = ({ children }) => {
         userInfo,
         token,
         navigate,
-        deleteTech,
       }}
     >
       {children}
