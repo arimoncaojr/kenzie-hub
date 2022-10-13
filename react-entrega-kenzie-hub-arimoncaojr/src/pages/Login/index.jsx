@@ -1,5 +1,9 @@
 import { useContext } from "react";
-import { LoginContext } from "../../contexts/LoginContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { schema } from "../../lib/yupLogin";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Navigate } from "react-router-dom";
 import {
   Container,
   Form,
@@ -11,24 +15,20 @@ import {
   Span,
   H1Login,
 } from "../../styles";
-import { Navigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const { showPass, setShowPass, token, login } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
-    showPass,
-    setShowPass,
-    token,
-    errors,
-    onSubmit,
-  } = useContext(LoginContext);
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
   return (
     <>
       {!token ? (
         <Container>
           <H1Login>Kenzie Hub</H1Login>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form onSubmit={handleSubmit(login)}>
             <h2>Login</h2>
             <div>
               <Label
