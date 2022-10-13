@@ -10,25 +10,23 @@ export const AuthProvider = ({ children }) => {
   const [showPass, setShowPass] = useState(true);
   const [showConfirmPass, setShowConfirmPass] = useState(true);
   const [userInfo, setUserInfo] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("@kenzieHub:Token");
 
   const login = (user) => {
+    setLoading(true);
     Api.post("/sessions", { ...user })
       .then((res) => {
         window.localStorage.clear();
         window.localStorage.setItem("@kenzieHub:Token", res.data.token);
         toast.success("Login bem sucedido!");
         navigate(`/dashboard`, { replace: true });
-        setLoading(true);
+        res && setLoading(false);
       })
-      .catch(
-        (err) => toast.error("Login ou Senha inválidos!"),
-        setLoading(false),
-        setTimeout(() => {
-          setLoading(true);
-        }, 1000)
-      );
+      .catch((err) => {
+        toast.error("Login ou Senha inválidos!");
+        err && setLoading(false);
+      });
   };
 
   const signUp = (user) => {
@@ -64,6 +62,7 @@ export const AuthProvider = ({ children }) => {
         showConfirmPass,
         setShowConfirmPass,
         loading,
+        setLoading,
       }}
     >
       {children}
