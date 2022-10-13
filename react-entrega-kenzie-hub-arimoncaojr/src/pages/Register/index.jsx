@@ -25,6 +25,7 @@ export const RegisterPage = () => {
     showConfirmPass,
     setShowConfirmPass,
     token,
+    loading,
   } = useContext(AuthContext);
 
   const {
@@ -278,7 +279,9 @@ export const RegisterPage = () => {
                 <option value="Sexto Módulo">Sexto Módulo</option>
               </Select>
             </div>
-            <button type="submit">Cadastrar</button>
+            <button type="submit">
+              {loading ? <div className="loading"></div> : "Cadastrar"}
+            </button>
           </Form>
         </Container>
       ) : (
