@@ -64,6 +64,21 @@ export const Container = styled.div`
     max-width: 100%;
     margin-top: 10px;
   }
+
+  .loading {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: var(--color-primary-focus);
+    height: 1rem;
+    width: 1rem;
+
+    @keyframes is-rotating {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  }
 `;
 export const H1Login = styled.h1`
   color: var(--color-primary);
@@ -109,6 +124,9 @@ export const Form = styled.form`
   }
 
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--btn-login-width);
     height: var(--btn-login-height);
     color: var(--grey0);
