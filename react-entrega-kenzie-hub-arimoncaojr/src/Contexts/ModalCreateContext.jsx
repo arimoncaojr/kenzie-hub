@@ -3,12 +3,7 @@ import { toast } from "react-toastify";
 import { Api } from "../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-const schema = yup.object({
-  title: yup.string().required("Nome não preenchido"),
-  status: yup.string().required("Status não selecionado"),
-});
+import { schema } from "../lib/yupCreateTech";
 
 export const ModalContext = createContext();
 

@@ -6,7 +6,7 @@ import {
   H2,
   H3,
 } from "../../styles/dashboard";
-import { DashboardContext } from "../../contexts/DashboardContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { ModalContext } from "../../contexts/ModalCreateContext";
 import { ModalEditContext } from "../../contexts/ModalEditContext";
 import { useContext } from "react";
@@ -15,7 +15,7 @@ import { ModalCreate } from "../../components/ModalCreate";
 import { ModalEdit } from "../../components/ModalEdit";
 import { toast } from "react-toastify";
 export const Dashboard = () => {
-  const { userInfo, token } = useContext(DashboardContext);
+  const { userInfo, token } = useContext(AuthContext);
   const { modal, showModal } = useContext(ModalContext);
   const { setNameTech, modalEdit, showModalEdit, setIdTech } =
     useContext(ModalEditContext);
