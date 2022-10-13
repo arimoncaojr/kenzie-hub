@@ -30,13 +30,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signUp = (user) => {
+    setLoading(true);
     Api.post("/users", { ...user })
       .then((res) => {
         toast.success("Cadastro efetuado com sucesso!");
         navigate("/login");
+        res && setLoading(false);
       })
       .catch((err) => {
-        err && toast.error("E-mail já cadastrado!");
+        toast.error("E-mail já cadastrado!");
+        err && setLoading(false);
       });
   };
 
