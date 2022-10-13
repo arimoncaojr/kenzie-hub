@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RegisterContext } from "../../contexts/RegisterContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import {
   Container,
   Form,
@@ -12,20 +12,27 @@ import {
   Span,
   H1Register,
 } from "../../styles";
+import { schema } from "../../lib/yupRegister";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Navigate } from "react-router-dom";
 
 export const RegisterPage = () => {
   const {
-    register,
-    handleSubmit,
-    errors,
-    onSubmit,
+    signUp,
     showPass,
     setShowPass,
     showConfirmPass,
     setShowConfirmPass,
     token,
-  } = useContext(RegisterContext);
+  } = useContext(AuthContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
   return (
     <>
       {!token ? (
@@ -36,7 +43,7 @@ export const RegisterPage = () => {
               Voltar
             </Link>
           </div>
-          <Form onSubmit={handleSubmit(onSubmit)} register>
+          <Form onSubmit={handleSubmit(signUp)} register>
             <h2>Crie sua conta</h2>
             <Span register>Rápido e grátis, vamos nessa!</Span>
 
