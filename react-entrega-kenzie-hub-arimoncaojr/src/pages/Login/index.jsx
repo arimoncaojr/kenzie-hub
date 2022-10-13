@@ -17,7 +17,8 @@ import {
 } from "../../styles";
 
 export const LoginPage = () => {
-  const { showPass, setShowPass, token, login } = useContext(AuthContext);
+  const { showPass, setShowPass, token, login, loading } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -109,7 +110,9 @@ export const LoginPage = () => {
                 )}
               </>
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit">
+              {loading ? "Entrar" : <div className="loading"></div>}
+            </button>
             <Span>Ainda não possui uma conta?</Span>
             <Link to="/register">Cadastre-se</Link>
           </Form>

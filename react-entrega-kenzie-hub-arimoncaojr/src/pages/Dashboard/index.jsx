@@ -15,7 +15,7 @@ import { ModalCreate } from "../../components/ModalCreate";
 import { ModalEdit } from "../../components/ModalEdit";
 import { toast } from "react-toastify";
 export const Dashboard = () => {
-  const { userInfo, token } = useContext(AuthContext);
+  const { userInfo, token, loading } = useContext(AuthContext);
   const { modal, showModal } = useContext(ModalContext);
   const { setNameTech, modalEdit, showModalEdit, setIdTech } =
     useContext(ModalEditContext);
@@ -36,6 +36,7 @@ export const Dashboard = () => {
                 to={"/login"}
                 onClick={() => {
                   window.localStorage.clear();
+                  loading(true);
                   toast.success("Logout feito com sucesso!");
                 }}
               >
