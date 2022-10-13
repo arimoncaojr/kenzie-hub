@@ -24,6 +24,7 @@ export const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
   return (
     <>
       {!token ? (
@@ -111,7 +112,7 @@ export const LoginPage = () => {
               </>
             </div>
             <button type="submit">
-              {loading ? "Entrar" : <div className="loading"></div>}
+              {loading ? <div className="loading"></div> : "Entrar"}
             </button>
             <Span>Ainda não possui uma conta?</Span>
             <Link to="/register">Cadastre-se</Link>
