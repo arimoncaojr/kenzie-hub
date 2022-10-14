@@ -19,6 +19,8 @@ export const ModalEdit = () => {
     deleteTech,
     getValues,
     reset,
+    loading,
+    loadingDelete,
   } = useContext(ModalEditContext);
   const value = getValues("status");
   return (
@@ -81,14 +83,14 @@ export const ModalEdit = () => {
               className="btnEditInfo"
               type="submit"
             >
-              Salvar Alterações
+              {loading ? <div className="loading"></div> : "Salvar Alterações"}
             </ButtonEditInfo>
             <button
               className="btnDeleteTech"
               type="button"
               onClick={() => deleteTech()}
             >
-              Excluir
+              {loadingDelete ? <div className="loading"></div> : "Excluir"}
             </button>
           </div>
         </form>

@@ -2,8 +2,15 @@ import { ContainerModal, Label, Input, Select } from "../../styles/modal";
 import { ModalContext } from "../../contexts/ModalCreateContext";
 import { useContext } from "react";
 export const ModalCreate = () => {
-  const { showModal, reset, handleSubmit, submitTechInfo, errors, register } =
-    useContext(ModalContext);
+  const {
+    showModal,
+    reset,
+    handleSubmit,
+    submitTechInfo,
+    errors,
+    register,
+    loading,
+  } = useContext(ModalContext);
   return (
     <ContainerModal>
       <div className="modal">
@@ -53,7 +60,7 @@ export const ModalCreate = () => {
             <option value="Avançado">Avançado</option>
           </Select>
           <button className="btnRegisterTech" type="submit">
-            Cadastrar Tecnologia
+            {loading ? <div className="loading"></div> : "Cadastrar Tecnologia"}
           </button>
         </form>
       </div>
