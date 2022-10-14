@@ -9,6 +9,21 @@ export const ContainerModal = styled.div`
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 
+  .loading {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: var(--color-primary-focus);
+    height: 1rem;
+    width: 1rem;
+
+    @keyframes is-rotating {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  }
+
   .modal {
     display: flex;
     flex-direction: column;
@@ -54,6 +69,9 @@ export const ContainerModal = styled.div`
       margin-top: 1rem;
 
       .btnRegisterTech {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: var(--btn-login-width);
         height: var(--btn-login-height);
         color: var(--grey0);
@@ -74,6 +92,9 @@ export const ContainerModal = styled.div`
       }
 
       .btnDeleteTech {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 6.125rem;
         height: 3rem;
         border: transparent;
@@ -126,6 +147,9 @@ export const Select = styled.select`
 `;
 
 export const ButtonEditInfo = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 12.75rem;
   height: 3rem;
   color: var(--grey0);
