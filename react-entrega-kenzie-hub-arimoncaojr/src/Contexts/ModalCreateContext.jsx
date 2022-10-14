@@ -10,6 +10,7 @@ export const ModalContext = createContext();
 export const ModalProvider = ({ children }) => {
   const token = localStorage.getItem("@kenzieHub:Token");
   const [modal, showModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,6 +19,7 @@ export const ModalProvider = ({ children }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const submitTechInfo = (infos) => {
+    setLoading(true);
     Api.post(
       "/users/techs",
       { ...infos },
@@ -29,9 +31,11 @@ export const ModalProvider = ({ children }) => {
         toast.success("Tecnologia criada com sucesso!");
         showModal(false);
         reset();
+        res && setLoading(false);
       })
       .catch((err) => {
-        err && toast.error("Tecnologia com mesmo nome já criada!");
+        toast.error("Tecnologia com mesmo nome já criada!");
+        err && setLoading(false);
       });
   };
 
@@ -45,6 +49,7 @@ export const ModalProvider = ({ children }) => {
         handleSubmit,
         errors,
         reset,
+        loading,
       }}
     >
       {children}

@@ -12,6 +12,8 @@ export const ModalEditProvider = ({ children }) => {
   const [modalEdit, showModalEdit] = useState(false);
   const [nameTech, setNameTech] = useState("");
   const [idTech, setIdTech] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   const {
     register,
@@ -22,6 +24,7 @@ export const ModalEditProvider = ({ children }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const editTech = (newInfo) => {
+    setLoading(true);
     Api.put(
       `/users/techs/${idTech}`,
       { ...newInfo },
@@ -33,17 +36,23 @@ export const ModalEditProvider = ({ children }) => {
         toast.success("Status editado com sucesso!");
         showModalEdit(false);
         reset();
+        res && setLoading(false);
       })
-      .catch((err) => err && toast.error("Ops, algo deu errado!"));
+      .catch((err) => {
+        toast.error("Ops, algo deu errado!");
+        err && setLoading(false);
+      });
   };
 
   function deleteTech() {
+    setLoadingDelete(true);
     Api.delete(`/users/techs/${idTech}`, {
       headers: { Authorization: `Bearer ${token}` },
     }).then(() => {
       toast.success("Tecnologia deletada com sucesso!");
       showModalEdit(false);
       reset();
+      setLoadingDelete(false);
     });
   }
 
@@ -62,6 +71,8 @@ export const ModalEditProvider = ({ children }) => {
         setIdTech,
         getValues,
         reset,
+        loading,
+        loadingDelete,
       }}
     >
       {children}
