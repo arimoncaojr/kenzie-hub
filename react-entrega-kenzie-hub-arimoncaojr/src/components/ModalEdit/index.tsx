@@ -5,23 +5,30 @@ import {
   Select,
   ButtonEditInfo,
 } from "../../styles/modal";
-import { ModalEditContext } from "../../contexts/ModalEditContext";
+import { INewInfos, ModalEditContext } from "../../contexts/ModalEditContext";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../lib/yupEditTech";
 
 export const ModalEdit = () => {
   const {
-    register,
-    handleSubmit,
-    errors,
     nameTech,
     showModalEdit,
     editTech,
     deleteTech,
-    getValues,
-    reset,
     loading,
     loadingDelete,
   } = useContext(ModalEditContext);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors },
+  } = useForm<INewInfos>({ resolver: yupResolver(schema) });
+
   const value = getValues("status");
   return (
     <ContainerModal>
@@ -56,7 +63,6 @@ export const ModalEdit = () => {
             {errors.status ? errors.status.message : "Status"}
           </Label>
           <Select
-            name=""
             id="status"
             borderColor={errors.status ? "var(--color-error)" : "transparent"}
             borderFocus={errors.status ? "var(--color-error)" : "var(--grey0)"}

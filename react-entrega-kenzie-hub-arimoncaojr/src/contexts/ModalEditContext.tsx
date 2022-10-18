@@ -1,13 +1,32 @@
-import { useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 import { toast } from "react-toastify";
 import { Api } from "../services/api";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../lib/yupEditTech";
 
-export const ModalEditContext = createContext();
+interface IModalEditContextProps {
+  children: React.ReactNode;
+}
 
-export const ModalEditProvider = ({ children }) => {
+interface IModalEditContext {
+  modalEdit: boolean;
+  showModalEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  nameTech: string;
+  setNameTech: React.Dispatch<React.SetStateAction<string>>;
+  setIdTech: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
+  loadingDelete: boolean;
+  editTech: (newInfo: INewInfos) => void;
+  deleteTech: () => void;
+}
+
+export interface INewInfos {
+  status: string;
+}
+
+export const ModalEditContext = createContext<IModalEditContext>(
+  {} as IModalEditContext
+);
+
+export const ModalEditProvider = ({ children }: IModalEditContextProps) => {
   const token = localStorage.getItem("@kenzieHub:Token");
   const [modalEdit, showModalEdit] = useState(false);
   const [nameTech, setNameTech] = useState("");
@@ -15,15 +34,7 @@ export const ModalEditProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    getValues,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
-
-  const editTech = (newInfo) => {
+  const editTech = (newInfo: INewInfos) => {
     setLoading(true);
     Api.put(
       `/users/techs/${idTech}`,
@@ -35,7 +46,6 @@ export const ModalEditProvider = ({ children }) => {
       .then((res) => {
         toast.success("Status editado com sucesso!");
         showModalEdit(false);
-        reset();
         res && setLoading(false);
       })
       .catch((err) => {
@@ -51,7 +61,6 @@ export const ModalEditProvider = ({ children }) => {
     }).then(() => {
       toast.success("Tecnologia deletada com sucesso!");
       showModalEdit(false);
-      reset();
       setLoadingDelete(false);
     });
   }
@@ -59,9 +68,6 @@ export const ModalEditProvider = ({ children }) => {
   return (
     <ModalEditContext.Provider
       value={{
-        register,
-        handleSubmit,
-        errors,
         nameTech,
         setNameTech,
         modalEdit,
@@ -69,8 +75,6 @@ export const ModalEditProvider = ({ children }) => {
         deleteTech,
         editTech,
         setIdTech,
-        getValues,
-        reset,
         loading,
         loadingDelete,
       }}

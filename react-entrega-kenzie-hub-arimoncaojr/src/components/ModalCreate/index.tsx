@@ -1,16 +1,18 @@
 import { ContainerModal, Label, Input, Select } from "../../styles/modal";
 import { ModalContext } from "../../contexts/ModalCreateContext";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../lib/yupCreateTech";
+import { IInfos } from "../../contexts/ModalCreateContext";
 export const ModalCreate = () => {
+  const { showModal, submitTechInfo, loading } = useContext(ModalContext);
   const {
-    showModal,
-    reset,
-    handleSubmit,
-    submitTechInfo,
-    errors,
     register,
-    loading,
-  } = useContext(ModalContext);
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IInfos>({ resolver: yupResolver(schema) });
   return (
     <ContainerModal>
       <div className="modal">
@@ -26,7 +28,7 @@ export const ModalCreate = () => {
             X
           </button>
         </div>
-        <form onSubmit={handleSubmit(submitTechInfo)} action="">
+        <form onSubmit={handleSubmit(submitTechInfo)}>
           <Label
             htmlFor="title"
             colorText={errors.title ? "var(--color-error)" : "var(--grey0)"}
@@ -48,7 +50,6 @@ export const ModalCreate = () => {
             {errors.status ? errors.status.message : "Selecionar status"}
           </Label>
           <Select
-            name=""
             id="status"
             borderColor={errors.status ? "var(--color-error)" : "transparent"}
             borderFocus={errors.status ? "var(--color-error)" : "var(--grey0)"}
