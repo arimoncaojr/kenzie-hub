@@ -1,24 +1,31 @@
-import { useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 import { toast } from "react-toastify";
 import { Api } from "../services/api";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "../lib/yupCreateTech";
 
-export const ModalContext = createContext();
+interface IModalContextProps {
+  children: React.ReactNode;
+}
 
-export const ModalProvider = ({ children }) => {
-  const token = localStorage.getItem("@kenzieHub:Token");
+interface IModalContext {
+  modal: boolean;
+  showModal: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  submitTechInfo: (infos: IInfos) => void;
+}
+
+export interface IInfos {
+  title: string;
+  status: string;
+}
+
+export const ModalContext = createContext<IModalContext>({} as IModalContext);
+
+export const ModalProvider = ({ children }: IModalContextProps) => {
+  const token: string | null = localStorage.getItem("@kenzieHub:Token");
   const [modal, showModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
 
-  const submitTechInfo = (infos) => {
+  const submitTechInfo = (infos: IInfos) => {
     setLoading(true);
     Api.post(
       "/users/techs",
@@ -30,7 +37,6 @@ export const ModalProvider = ({ children }) => {
       .then((res) => {
         toast.success("Tecnologia criada com sucesso!");
         showModal(false);
-        reset();
         res && setLoading(false);
       })
       .catch((err) => {
@@ -45,10 +51,6 @@ export const ModalProvider = ({ children }) => {
         modal,
         showModal,
         submitTechInfo,
-        register,
-        handleSubmit,
-        errors,
-        reset,
         loading,
       }}
     >

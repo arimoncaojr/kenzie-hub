@@ -3,7 +3,19 @@ import { EyeOff } from "@styled-icons/heroicons-solid/EyeOff";
 import { Eye } from "@styled-icons/heroicons-solid/Eye";
 import { Link } from "react-router-dom";
 
-export const IconEyeOff = styled(EyeOff)`
+interface IStyledProps {
+  bottom?: string;
+  top?: string;
+  marginBotton?: string;
+  marginTop?: string;
+  mobile?: boolean;
+  register?: boolean;
+  colorText?: string;
+  borderColor?: string;
+  borderFocus?: string;
+}
+
+export const IconEyeOff = styled(EyeOff)<IStyledProps>`
   color: var(--grey0);
   width: 0.875rem;
   height: 1.375;
@@ -22,7 +34,7 @@ export const IconEyeOff = styled(EyeOff)`
   }
 `;
 
-export const IconEye = styled(Eye)`
+export const IconEye = styled(Eye)<IStyledProps>`
   color: var(--grey0);
   width: 0.875rem;
   height: 1.375;
@@ -95,7 +107,7 @@ export const H1Register = styled.h1`
   font-size: var(--font-title1);
   font-weight: var(--font-weight1);
 `;
-export const Form = styled.form`
+export const Form = styled.form<IStyledProps>`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -140,12 +152,12 @@ export const Form = styled.form`
     }
   }
 `;
-export const Label = styled.label`
+export const Label = styled.label<IStyledProps>`
   font-size: var(--font-text2);
   max-width: var(--input-login-width);
   color: ${(props) => props.colorText};
 `;
-export const Input = styled.input`
+export const Input = styled.input<IStyledProps>`
   width: var(--input-login-width);
   height: var(--input-login-height);
   border: 1px solid ${(props) => props.borderColor};
@@ -160,7 +172,7 @@ export const Input = styled.input`
   }
 `;
 
-export const LinkeStyle = styled(Link)`
+export const LinkeStyle = styled(Link)<IStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +193,7 @@ export const LinkeStyle = styled(Link)`
   }
 `;
 
-export const Select = styled.select`
+export const Select = styled.select<IStyledProps>`
   width: var(--input-login-width);
   height: var(--input-login-height);
   border: 1px solid ${(props) => props.borderColor};
@@ -195,7 +207,7 @@ export const Select = styled.select`
     border: 1px solid ${(props) => props.borderFocus};
   }
 `;
-export const Span = styled.span`
+export const Span = styled.span<IStyledProps>`
   color: var(--grey1);
   font-size: var(--font-text1);
   font-weight: ${(props) =>
