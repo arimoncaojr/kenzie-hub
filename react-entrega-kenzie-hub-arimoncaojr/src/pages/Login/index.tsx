@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext, ILogin } from "../../contexts/AuthContext";
 import { schema } from "../../lib/yupLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,7 +23,7 @@ export const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<ILogin>({ resolver: yupResolver(schema) });
 
   return (
     <>

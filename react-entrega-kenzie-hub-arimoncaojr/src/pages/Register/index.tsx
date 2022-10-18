@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext, ISignUp } from "../../contexts/AuthContext";
 import {
   Container,
   Form,
@@ -32,7 +32,7 @@ export const RegisterPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<ISignUp>({ resolver: yupResolver(schema) });
 
   return (
     <>
@@ -110,7 +110,9 @@ export const RegisterPage = () => {
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
                       marginTop={
-                        errors.password && errors.password.message.length > 20
+                        errors.password &&
+                        errors.password.message != null &&
+                        errors.password.message.length > 20
                           ? "14.3rem"
                           : "13.4rem"
                       }
@@ -122,7 +124,9 @@ export const RegisterPage = () => {
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
                       marginTop={
-                        errors.password && errors.password.message.length > 20
+                        errors.password &&
+                        errors.password.message != null &&
+                        errors.password.message.length > 20
                           ? "14.3rem"
                           : "13.4rem"
                       }
@@ -136,7 +140,9 @@ export const RegisterPage = () => {
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
                       marginTop={
-                        errors.password && errors.password.message.length > 20
+                        errors.password &&
+                        errors.password.message != null &&
+                        errors.password.message.length > 20
                           ? "14.3rem"
                           : "13.4rem"
                       }
@@ -148,7 +154,9 @@ export const RegisterPage = () => {
                       bottom={"unset"}
                       marginBotton={"1.2rem"}
                       marginTop={
-                        errors.password && errors.password.message.length > 20
+                        errors.password &&
+                        errors.password.message != null &&
+                        errors.password.message.length > 20
                           ? "14.3rem"
                           : "13.4rem"
                       }
@@ -260,7 +268,6 @@ export const RegisterPage = () => {
                   : "Selecionar módulo"}
               </Label>
               <Select
-                name=""
                 id="course_module"
                 borderColor={
                   errors.course_module ? "var(--color-error)" : "transparent"

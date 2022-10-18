@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+interface IStyledProps {
+  colorText?: string;
+  borderColor?: string;
+  borderFocus?: string;
+  noEdit?: boolean;
+  backgroundColor?: string;
+  cursorPointer?: string;
+  hoverBtn?: string;
+  readonly?: boolean;
+}
+
 export const ContainerModal = styled.div`
   display: flex;
   justify-content: center;
@@ -111,12 +122,12 @@ export const ContainerModal = styled.div`
   }
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<IStyledProps>`
   font-size: var(--font-text2);
   color: ${(props) => props.colorText};
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<IStyledProps>`
   width: var(--input-login-width);
   height: var(--input-login-height);
   border: 1px solid ${(props) => props.borderColor};
@@ -131,7 +142,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Select = styled.select`
+export const Select = styled.select<IStyledProps>`
   width: var(--input-login-width);
   height: var(--input-login-height);
   border: 1px solid ${(props) => props.borderColor};
@@ -146,7 +157,7 @@ export const Select = styled.select`
   }
 `;
 
-export const ButtonEditInfo = styled.button`
+export const ButtonEditInfo = styled.button<IStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;

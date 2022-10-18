@@ -20,7 +20,7 @@ export const Dashboard = () => {
   const { setNameTech, modalEdit, showModalEdit, setIdTech } =
     useContext(ModalEditContext);
 
-  function btnModalEdit(name) {
+  function btnModalEdit(name: string) {
     setNameTech(name);
     showModalEdit(true);
   }
@@ -58,7 +58,7 @@ export const Dashboard = () => {
               <ul>
                 {userInfo.techs.map((element) => (
                   <li
-                    key={element.id}
+                    key={element.title}
                     onClick={() => {
                       btnModalEdit(element.title);
                       setIdTech(element.id);
