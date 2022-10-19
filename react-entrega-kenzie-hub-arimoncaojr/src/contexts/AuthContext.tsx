@@ -1,14 +1,67 @@
 import { Api } from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useState, createContext, useEffect } from "react";
-import {
-  IAuthContext,
-  IAuthContextProps,
-  IRegister,
-  ILogin,
-  IUserInfo,
-} from "../interfaces/IAuthContext";
+import React, { useState, createContext, useEffect } from "react";
+
+interface IAuthContextProps {
+  children: React.ReactNode;
+}
+
+interface ITechs {
+  id: string;
+  title: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+
+interface IWorks {
+  title?: string;
+  description?: string;
+  deploy_url?: string;
+}
+
+interface IUserInfo {
+  id: string;
+  name: string;
+  email: string;
+  course_module: string;
+  bio: string;
+  contact: string;
+  techs: ITechs[];
+  works: IWorks[];
+  created_at: string;
+  updated_at: string;
+  avatar_url: string | null;
+}
+
+export interface ISignUp {
+  email: string;
+  password: string;
+  confirmPass: string;
+  name: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+interface IAuthContext {
+  userInfo: IUserInfo;
+  showPass: boolean;
+  setShowPass: React.Dispatch<React.SetStateAction<boolean>>;
+  showConfirmPass: boolean;
+  setShowConfirmPass: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  token: string | null;
+  login: (user: ILogin) => void;
+  signUp: (user: ISignUp) => void;
+}
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
@@ -37,7 +90,7 @@ export const AuthProvider = ({ children }: IAuthContextProps) => {
       });
   };
 
-  const signUp = (user: IRegister) => {
+  const signUp = (user: ISignUp) => {
     setLoading(true);
     Api.post("/users", { ...user })
       .then((res) => {
