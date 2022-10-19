@@ -9,9 +9,9 @@ interface ITechs {
 }
 
 interface IWorks {
-  title?: string;
-  description?: string;
-  deploy_url?: string;
+  title: string;
+  description: string;
+  deploy_url: string;
 }
 
 export interface IUserInfo {
