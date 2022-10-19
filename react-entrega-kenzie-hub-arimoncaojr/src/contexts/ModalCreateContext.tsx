@@ -1,22 +1,11 @@
-import React, { useState, createContext } from "react";
+import { useState, createContext } from "react";
+import {
+  IModalContext,
+  IModalContextProps,
+  IInfos,
+} from "../interfaces/IModalContext";
 import { toast } from "react-toastify";
 import { Api } from "../services/api";
-
-interface IModalContextProps {
-  children: React.ReactNode;
-}
-
-interface IModalContext {
-  modal: boolean;
-  showModal: React.Dispatch<React.SetStateAction<boolean>>;
-  loading: boolean;
-  submitTechInfo: (infos: IInfos) => void;
-}
-
-export interface IInfos {
-  title: string;
-  status: string;
-}
 
 export const ModalContext = createContext<IModalContext>({} as IModalContext);
 

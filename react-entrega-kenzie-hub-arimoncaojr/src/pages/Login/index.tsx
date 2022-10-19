@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { AuthContext, ILogin } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { ILogin } from "../../interfaces/IAuthContext";
 import { schema } from "../../lib/yupLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
