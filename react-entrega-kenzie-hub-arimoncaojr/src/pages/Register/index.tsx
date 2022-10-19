@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { AuthContext, ISignUp } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { IRegister } from "../../interfaces/IAuthContext";
 import {
   Container,
   Form,
@@ -32,7 +33,7 @@ export const RegisterPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignUp>({ resolver: yupResolver(schema) });
+  } = useForm<IRegister>({ resolver: yupResolver(schema) });
 
   return (
     <>
