@@ -5,8 +5,7 @@ import {
   Select,
   ButtonEditInfo,
 } from "../../styles/modal";
-import { ModalEditContext } from "../../contexts/ModalEditContext";
-import { INewInfos } from "../../interfaces/IModalEditContext";
+import { INewInfos, ModalEditContext } from "../../contexts/ModalEditContext";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
