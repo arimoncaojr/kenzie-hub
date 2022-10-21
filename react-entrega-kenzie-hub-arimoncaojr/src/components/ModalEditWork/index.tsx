@@ -53,37 +53,24 @@ export const ModalEditWork = () => {
           </button>
         </div>
         <form onSubmit={handleSubmit(editWork)}>
-          <Label
-            colorText={errors.title ? "var(--color-error)" : "var(--grey0)"}
-            htmlFor="title"
-          >
-            {errors.title ? errors.title.message : "Nome do Projeto"}
+          <Label colorText={"var(--grey0)"} htmlFor="title">
+            Nome do Projeto
           </Label>
           <Input
             type="text"
             id="title"
-            borderColor={errors.title ? "var(--color-error)" : "transparent"}
-            borderFocus={errors.title ? "var(--color-error)" : "var(--grey0)"}
+            borderColor={"transparent"}
+            borderFocus={"var(--grey0)"}
             {...register("title")}
           />
-          <Label
-            colorText={
-              errors.description ? "var(--color-error)" : "var(--grey0)"
-            }
-            htmlFor="description"
-          >
-            {errors.description
-              ? errors.description.message
-              : "Descrição do Projeto"}
+          <Label colorText={"var(--grey0)"} htmlFor="description">
+            Descrição do Projeto
           </Label>
           <Input
+            type="text"
             id="description"
-            borderColor={
-              errors.description ? "var(--color-error)" : "transparent"
-            }
-            borderFocus={
-              errors.description ? "var(--color-error)" : "var(--grey0)"
-            }
+            borderColor={"transparent"}
+            borderFocus={"var(--grey0)"}
             {...register("description")}
           />
           <Label
@@ -96,6 +83,7 @@ export const ModalEditWork = () => {
           </Label>
           <Input
             id="deploy_url"
+            type="url"
             borderColor={
               errors.deploy_url ? "var(--color-error)" : "transparent"
             }

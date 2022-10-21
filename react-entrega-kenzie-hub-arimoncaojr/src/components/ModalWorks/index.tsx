@@ -15,7 +15,12 @@ export const ModalWorkCreate = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IInfosWorks>({ resolver: yupResolver(schema) });
+  } = useForm<IInfosWorks>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      deploy_url: "https://",
+    },
+  });
 
   return (
     <ContainerModal>
@@ -76,7 +81,7 @@ export const ModalWorkCreate = () => {
             {errors.deploy_url ? errors.deploy_url.message : "URL"}
           </Label>
           <Input
-            type="text"
+            type="url"
             id="deploy_url"
             placeholder="Digite aqui a URL do projeto"
             borderColor={
