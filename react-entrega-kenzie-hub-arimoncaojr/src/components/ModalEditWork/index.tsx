@@ -58,7 +58,6 @@ export const ModalEditWork = () => {
             Nome do Projeto
           </Label>
           <Input
-            type="text"
             id="title"
             borderColor={"transparent"}
             borderFocus={"var(--grey0)"}
@@ -85,7 +84,6 @@ export const ModalEditWork = () => {
           </Label>
           <Input
             id="deploy_url"
-            type="url"
             borderColor={
               errors.deploy_url ? "var(--color-error)" : "transparent"
             }
