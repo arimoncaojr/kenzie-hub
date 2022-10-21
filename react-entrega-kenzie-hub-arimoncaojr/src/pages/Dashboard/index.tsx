@@ -9,20 +9,40 @@ import {
 import { AuthContext } from "../../contexts/AuthContext";
 import { ModalContext } from "../../contexts/ModalCreateContext";
 import { ModalEditContext } from "../../contexts/ModalEditContext";
+import { ModalWorksContext } from "../../contexts/ModalWorks";
+import { ModalWorksEditContext } from "../../contexts/ModalWorksEdit";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { ModalCreate } from "../../components/ModalCreate";
 import { ModalEdit } from "../../components/ModalEdit";
 import { toast } from "react-toastify";
+import { ModalWorkCreate } from "../../components/ModalWorks";
+import { ModalEditWork } from "../../components/ModalEditWork";
 export const Dashboard = () => {
   const { userInfo, token } = useContext(AuthContext);
   const { modal, showModal } = useContext(ModalContext);
   const { setNameTech, modalEdit, showModalEdit, setIdTech } =
     useContext(ModalEditContext);
+  const { modalWorks, showModalWorks } = useContext(ModalWorksContext);
+  const {
+    setNameWork,
+    setDescriptionWork,
+    setUrlWork,
+    setIdWork,
+    showModalWorksEdit,
+    modalWorksEdit,
+  } = useContext(ModalWorksEditContext);
 
   function btnModalEdit(name: string) {
     setNameTech(name);
     showModalEdit(true);
+  }
+
+  function btnModalWorkEdit(name: string, description: string, url: string) {
+    setNameWork(name);
+    setDescriptionWork(description);
+    setUrlWork(url);
+    showModalWorksEdit(true);
   }
 
   return (
@@ -58,7 +78,7 @@ export const Dashboard = () => {
               <ul>
                 {userInfo.techs.map((element) => (
                   <li
-                    key={element.title}
+                    key={element.id}
                     onClick={() => {
                       btnModalEdit(element.title);
                       setIdTech(element.id);
@@ -72,9 +92,34 @@ export const Dashboard = () => {
                 ))}
               </ul>
             )}
+            <div className="div-btn-tech">
+              <H3>Projetos Concluídos</H3>
+              <button onClick={() => showModalWorks(true)}>+</button>
+            </div>
+            {userInfo.works && (
+              <ul>
+                {userInfo.works.map((element) => (
+                  <li
+                    key={element.id}
+                    onClick={() => {
+                      btnModalWorkEdit(
+                        element.title,
+                        element.description,
+                        element.deploy_url
+                      );
+                      setIdWork(element.id);
+                    }}
+                  >
+                    <h3>{element.title}</h3>
+                  </li>
+                ))}
+              </ul>
+            )}
           </DivInfos>
           {modal && <ModalCreate />}
           {modalEdit && <ModalEdit />}
+          {modalWorks && <ModalWorkCreate />}
+          {modalWorksEdit && <ModalEditWork />}
         </Container>
       ) : (
         <Navigate to="/" replace />
