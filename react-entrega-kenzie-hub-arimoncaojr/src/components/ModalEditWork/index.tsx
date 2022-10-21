@@ -3,6 +3,7 @@ import {
   Label,
   Input,
   ButtonEditInfo,
+  TextArea,
 } from "../../styles/modal";
 import { IInfosWorksEdit } from "../../contexts/ModalWorksEdit";
 import { ModalWorksEditContext } from "../../contexts/ModalWorksEdit";
@@ -66,13 +67,14 @@ export const ModalEditWork = () => {
           <Label colorText={"var(--grey0)"} htmlFor="description">
             Descrição do Projeto
           </Label>
-          <Input
-            type="text"
+          <TextArea
             id="description"
             borderColor={"transparent"}
             borderFocus={"var(--grey0)"}
             {...register("description")}
-          />
+          >
+            {descriptionWork}
+          </TextArea>
           <Label
             colorText={
               errors.deploy_url ? "var(--color-error)" : "var(--grey0)"

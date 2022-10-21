@@ -9,6 +9,7 @@ interface IStyledProps {
   cursorPointer?: string;
   hoverBtn?: string;
   readonly?: boolean;
+  description?: boolean;
 }
 
 export const ContainerModal = styled.div`
@@ -19,6 +20,9 @@ export const ContainerModal = styled.div`
   width: 100%;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+
+  #description[type="text"] {
+  }
 
   .loading {
     animation: is-rotating 1s infinite;
@@ -137,6 +141,22 @@ export const Input = styled.input<IStyledProps>`
   color: ${(props) => (props.noEdit ? "var(--grey1)" : "var(--grey0)")};
   outline: none;
   max-width: 100%;
+
+  :focus {
+    border: 1px solid ${(props) => props.borderFocus};
+  }
+`;
+
+export const TextArea = styled.textarea<IStyledProps>`
+  width: var(--input-login-width);
+  height: 12.5rem;
+  border: 1px solid ${(props) => props.borderColor};
+  background-color: var(--grey2);
+  border-radius: var(--border-radius-default);
+  color: ${(props) => (props.noEdit ? "var(--grey1)" : "var(--grey0)")};
+  outline: none;
+  max-width: 100%;
+  resize: none;
 
   :focus {
     border: 1px solid ${(props) => props.borderFocus};

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../lib/yupCreateWork";
 import { IInfosWorks } from "../../contexts/ModalWorks";
-import { ContainerModal, Label, Input } from "../../styles/modal";
+import { ContainerModal, Label, Input, TextArea } from "../../styles/modal";
 
 export const ModalWorkCreate = () => {
   const { showModalWorks, submitWorkInfo, loading } =
@@ -60,8 +60,7 @@ export const ModalWorkCreate = () => {
           >
             {errors.description ? errors.description.message : "Descrição"}
           </Label>
-          <Input
-            type="text"
+          <TextArea
             id="description"
             placeholder="Digite aqui a descrição do projeto"
             borderColor={
@@ -71,7 +70,7 @@ export const ModalWorkCreate = () => {
               errors.description ? "var(--color-error)" : "var(--grey0)"
             }
             {...register("description")}
-          />
+          ></TextArea>
           <Label
             htmlFor="deploy_url"
             colorText={
@@ -93,7 +92,7 @@ export const ModalWorkCreate = () => {
             {...register("deploy_url")}
           />
           <button className="btnRegisterTech" type="submit">
-            {loading ? <div className="loading"></div> : "Cadastrar Tecnologia"}
+            {loading ? <div className="loading"></div> : "Publicar Projeto"}
           </button>
         </form>
       </div>
