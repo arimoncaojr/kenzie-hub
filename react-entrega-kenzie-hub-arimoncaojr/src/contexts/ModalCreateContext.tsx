@@ -22,8 +22,9 @@ export const ModalContext = createContext<IModalContext>({} as IModalContext);
 
 export const ModalProvider = ({ children }: IModalContextProps) => {
   const token: string | null = localStorage.getItem("@kenzieHub:Token");
-  const [modal, showModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const [modal, showModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const submitTechInfo = (infos: IInfos) => {
     setLoading(true);

@@ -30,6 +30,7 @@ export const ModalEdit = () => {
   } = useForm<INewInfos>({ resolver: yupResolver(schema) });
 
   const value = getValues("status");
+
   return (
     <ContainerModal>
       <div className="modal">

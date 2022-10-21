@@ -5,14 +5,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../lib/yupCreateTech";
 import { IInfos } from "../../contexts/ModalCreateContext";
+
 export const ModalCreate = () => {
   const { showModal, submitTechInfo, loading } = useContext(ModalContext);
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<IInfos>({ resolver: yupResolver(schema) });
+
   return (
     <ContainerModal>
       <div className="modal">

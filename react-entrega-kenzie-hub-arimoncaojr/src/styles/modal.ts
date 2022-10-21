@@ -39,9 +39,10 @@ export const ContainerModal = styled.div`
     display: flex;
     flex-direction: column;
     width: 23.063rem;
-    height: 21.375rem;
     background-color: var(--grey3);
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 4px;
+    padding-bottom: 20px;
+    max-width: 100%;
 
     .closeDiv {
       display: flex;
