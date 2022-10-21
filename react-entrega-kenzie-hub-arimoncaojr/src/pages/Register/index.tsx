@@ -57,7 +57,6 @@ export const RegisterPage = () => {
               </Label>
               <Input
                 id="name"
-                type="text"
                 placeholder="Digite aqui seu nome"
                 borderColor={errors.name ? "var(--color-error)" : "transparent"}
                 borderFocus={
@@ -73,7 +72,6 @@ export const RegisterPage = () => {
               </Label>
               <Input
                 id="email"
-                type="email"
                 placeholder="Digite aqui seu email"
                 borderColor={
                   errors.email ? "var(--color-error)" : "transparent"
@@ -231,7 +229,6 @@ export const RegisterPage = () => {
               </Label>
               <Input
                 id="bio"
-                type="text"
                 placeholder="Fale sobre você"
                 borderColor={errors.bio ? "var(--color-error)" : "transparent"}
                 borderFocus={errors.bio ? "var(--color-error)" : "var(--grey0)"}
@@ -247,7 +244,6 @@ export const RegisterPage = () => {
               </Label>
               <Input
                 id="contact"
-                type="text"
                 placeholder="Opção de contato"
                 borderColor={
                   errors.contact ? "var(--color-error)" : "transparent"

@@ -45,7 +45,6 @@ export const ModalWorkCreate = () => {
             {errors.title ? errors.title.message : "Nome"}
           </Label>
           <Input
-            type="text"
             id="title"
             placeholder="Digite aqui o nome do Projeto"
             borderColor={errors.title ? "var(--color-error)" : "transparent"}
@@ -80,7 +79,6 @@ export const ModalWorkCreate = () => {
             {errors.deploy_url ? errors.deploy_url.message : "URL"}
           </Label>
           <Input
-            type="url"
             id="deploy_url"
             placeholder="Digite aqui a URL do projeto"
             borderColor={
