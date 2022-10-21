@@ -28,11 +28,11 @@ export const ModalEditContext = createContext<IModalEditContext>(
 
 export const ModalEditProvider = ({ children }: IModalEditContextProps) => {
   const token = localStorage.getItem("@kenzieHub:Token");
-  const [modalEdit, showModalEdit] = useState(false);
-  const [nameTech, setNameTech] = useState("");
-  const [idTech, setIdTech] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [modalEdit, showModalEdit] = useState<boolean>(false);
+  const [nameTech, setNameTech] = useState<string>("");
+  const [idTech, setIdTech] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
 
   const editTech = (newInfo: INewInfos) => {
     setLoading(true);

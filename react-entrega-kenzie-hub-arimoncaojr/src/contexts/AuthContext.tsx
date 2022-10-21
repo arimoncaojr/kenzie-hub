@@ -15,10 +15,18 @@ interface ITechs {
   updated_at: string;
 }
 
+interface IUserWorks {
+  id: "string";
+}
+
 interface IWorks {
-  title?: string;
-  description?: string;
-  deploy_url?: string;
+  id: string;
+  title: string;
+  description: string;
+  deploy_url: string;
+  user: IUserWorks[];
+  created_at: string;
+  updated_at: string;
 }
 
 interface IUserInfo {
@@ -67,12 +75,12 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const AuthProvider = ({ children }: IAuthContextProps) => {
   const navigate = useNavigate();
-  const [showPass, setShowPass] = useState(true);
-  const [showConfirmPass, setShowConfirmPass] = useState(true);
-  const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
-  const [loading, setLoading] = useState(false);
   const token: string | null = localStorage.getItem("@kenzieHub:Token");
-  console.log(userInfo);
+
+  const [showPass, setShowPass] = useState<boolean>(true);
+  const [showConfirmPass, setShowConfirmPass] = useState<boolean>(true);
+  const [userInfo, setUserInfo] = useState<IUserInfo>({} as IUserInfo);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const login = (user: ILogin) => {
     setLoading(true);

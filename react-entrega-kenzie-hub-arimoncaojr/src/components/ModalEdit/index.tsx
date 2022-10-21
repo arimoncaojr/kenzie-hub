@@ -30,6 +30,7 @@ export const ModalEdit = () => {
   } = useForm<INewInfos>({ resolver: yupResolver(schema) });
 
   const value = getValues("status");
+
   return (
     <ContainerModal>
       <div className="modal">
@@ -86,7 +87,6 @@ export const ModalEdit = () => {
                   ? "var(--color-primary-negative)"
                   : "var(--color-primary)"
               }
-              className="btnEditInfo"
               type="submit"
             >
               {loading ? <div className="loading"></div> : "Salvar Alterações"}
