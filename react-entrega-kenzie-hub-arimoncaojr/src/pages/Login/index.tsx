@@ -41,7 +41,6 @@ export const LoginPage = () => {
               </Label>
               <Input
                 id="email"
-                type="email"
                 placeholder="Digite seu Email"
                 borderColor={
                   errors.email ? "var(--color-error)" : "transparent"
