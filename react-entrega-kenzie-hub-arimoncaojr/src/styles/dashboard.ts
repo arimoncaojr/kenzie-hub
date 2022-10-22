@@ -124,6 +124,12 @@ export const DivInfos = styled.div`
     border-radius: var(--border-radius-default);
     padding-bottom: 20px;
     padding-top: 20px;
+
+    p {
+      color: var(--grey0);
+      text-align: center;
+    }
+
     li {
       display: flex;
       align-items: center;
