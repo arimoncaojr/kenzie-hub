@@ -76,20 +76,24 @@ export const Dashboard = () => {
             </div>
             {userInfo.techs && (
               <ul>
-                {userInfo.techs.map((element) => (
-                  <li
-                    key={element.id}
-                    onClick={() => {
-                      btnModalEdit(element.title);
-                      setIdTech(element.id);
-                    }}
-                  >
-                    <h3>{element.title}</h3>
-                    <div>
-                      <p>{element.status}</p>
-                    </div>
-                  </li>
-                ))}
+                {userInfo.techs.length > 0 ? (
+                  userInfo.techs.map((element) => (
+                    <li
+                      key={element.id}
+                      onClick={() => {
+                        btnModalEdit(element.title);
+                        setIdTech(element.id);
+                      }}
+                    >
+                      <h3>{element.title}</h3>
+                      <div>
+                        <p>{element.status}</p>
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <p>Você não possui Tecnologias cadastradas.</p>
+                )}
               </ul>
             )}
             <div className="div-btn-tech">
@@ -98,21 +102,25 @@ export const Dashboard = () => {
             </div>
             {userInfo.works && (
               <ul>
-                {userInfo.works.map((element) => (
-                  <li
-                    key={element.id}
-                    onClick={() => {
-                      btnModalWorkEdit(
-                        element.title,
-                        element.description,
-                        element.deploy_url
-                      );
-                      setIdWork(element.id);
-                    }}
-                  >
-                    <h3>{element.title}</h3>
-                  </li>
-                ))}
+                {userInfo.works.length > 0 ? (
+                  userInfo.works.map((element) => (
+                    <li
+                      key={element.id}
+                      onClick={() => {
+                        btnModalWorkEdit(
+                          element.title,
+                          element.description,
+                          element.deploy_url
+                        );
+                        setIdWork(element.id);
+                      }}
+                    >
+                      <h3>{element.title}</h3>
+                    </li>
+                  ))
+                ) : (
+                  <p>Você não possui Projetos publicados.</p>
+                )}
               </ul>
             )}
           </DivInfos>
